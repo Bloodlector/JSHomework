@@ -88,6 +88,36 @@
     console.log(attachedES5);
 
 
+    //Это по ES6
+
+    class PostES6 {
+      constructor(name, text) {
+        this.name = name;
+        this.text = text;
+        this.date = new Date();
+      }
+      change(text) {
+        this.text = text;
+        this.date = new Date();
+      }
+    }
+    const postES6 = new PostES6('Крис', "текст");
+    console.log(postES6);
+    postES6.change = new PostES6('Крис', "Новый текст");
+    console.log(postES6);
+
+    class AttachedPostES6 extends PostES6 {
+      highlighted = false;
+      makeTextHighlighted() {
+        this.highlighted = true;
+        this.date = new Date();
+      }
+    }
+    const attachedPostES6 = new AttachedPostES6('Крис', 'Текст');
+    console.log(attachedPostES6);
+    attachedPostES6.makeTextHighlighted();
+    attachedPostES6.change('Новый текст');
+    console.log(attachedPostES6);
 
   </script>
 </body>
