@@ -4,6 +4,16 @@
 <head>
   <meta charset="UTF-8">
   <title>Homework</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css">
+  <style>
+    .message {
+      width: 150px;
+      padding: 20px;
+      background: lightgoldenrodyellow;
+      border: 1px solid orange;
+      visibility: hidden;
+    }
+  </style>
 </head>
 
 <body>
@@ -14,87 +24,86 @@
 стирать, код с решением задачи пишем под комментарием.
 -->
 
-  <p class="dropdown">Привет :)</p>
-  <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-      aria-haspopup="true" aria-expanded="false">
-      Dropdown button
-    </button>
-    <div class="menu dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" href="#">Action</a>
-      <a class="dropdown-item" href="#">Another action</a>
-      <a class="dropdown-item" href="#">Something else here</a>
-    </div>
+  <input id="from" type="text">
+  В инпуте написано: <span></span>
+
+  <br>
+
+  <button class="messageBtn">Показать блок</button>
+  <div class="message">
+    Привет :)
   </div>
+
+  <br>
+
+  <form>
+    <input id="first" type="text"><br>
+    <br>
+    <input id="second" type="text"><br>
+    <br>
+    <button>Отправить</button>
+  </form>
 
   <script>
     "use strict";
 
     /*
-    1. Ко всем элементам, имеющим класс "dropdown-item" добавить еще один класс
-    "super-dropdown", необходимо использовать методы forEach и querySelectorAll и
-    свойство classList у элементов.
-     */
-    document.querySelectorAll('.dropdown-item')
-      .forEach(element => element.classList.add('super-dropdown'));
+    1. При изменении значения в input, значение содержащееся в нем должно
+    моментально отображаться в span. То есть при печати в input'е тег span также
+    должен меняться.
+    */
+    const alpha = document.querySelector('span');
+    document.querySelector('input').addEventListener('input', event => {
+      alpha.textContent = event.target.value;
+    });
 
 
     /*
-    2. У элемента с классом btn необходимо убрать класс "btn-secondary", если он
-    присутствует у этого элемента, либо добавить, если такого класса у элемента
-    не было.
+    2. При клике на кнопку с классом messageBtn необходимо элементу с классом
+    message:
+    1) добавить два класса: animate__animated и animate__fadeInLeftBig
+    2) поставить данному элементу стиль visibility в значение 'visible'.
      */
-    document.querySelector('.btn').classList.toggle('btn-secondary');
-
-    /*
-    3. Необходимо удалить класс "dropdown-menu" у элемента, у которого
-    присутствует класс "menu".
-     */
-    document.querySelector('.menu').classList.remove('dropdown-menu');
-
-
-    /*
-    4. Используя метод insertAdjacentHTML добавьте после div'a с классом
-    "dropdown" следующую разметку:
-      <a href="#">link</a>
-     */
-    document.querySelector('div.dropdown')
-      .insertAdjacentHTML('afterend', '<a href="#">link</a>');
+    document.querySelector('button').addEventListener('click', () => {
+      const message = document.querySelector('.message');
+      message.style.visibility = 'visible';
+      message.classList.add('animate__animated', 'animate__fadeInLeftBig');
+    });
 
 
     /*
-    5. У элемента с id "dropdownMenuButton" замените id на "superDropdown".
+    3. Необходимо при отправке формы проверить, заполнены ли все поля в этой
+    форме. Если какое-либо поле не заполнено, его необходимо подсветить и не дать
+    отправить форму. Форма отправляется, только если оба поля не пусты.
+    Если поле было подсвечено в прошлый раз, а в другой раз поле было заполнено,
+    то выделение данного поля надо убрать.
      */
-    document.getElementById('dropdownMenuButton').id = 'superDropdown';
+    const first = document.getElementById('first');
+    const second = document.getElementById('second');
 
+    document.querySelector('form').addEventListener('submit', event => {
+      const firstIncorrect = first.value === '';
+      const secondIncorrect = second.value === '';
 
-    /*
-    6. Добавьте атрибут data-dd со значением 3 элементу у которого существует
-    атрибут "aria-labelledby" равный "dropdownMenuButton" используя dataset.
-     */
-    document
-      .querySelector('[aria-labelledby="dropdownMenuButton"]')
-      .dataset
-      .dataDd = "3";
+      if (firstIncorrect) {
+        first.style.borderColor = 'red';
+      }
 
+      if (secondIncorrect) {
+        second.style.borderColor = 'red';
+      }
 
-    /*
-    7. Удалите атрибут type у элемента с классом "dropdown-toggle".
-     */
-    document.querySelector('.dropdown-toggle').removeAttribute('Type');
+      if (firstIncorrect || secondIncorrect) {
+        event.preventDefault();
+      }
+    });
 
+    [first, second].forEach(element => element.addEventListener('change', event => {
+      if (event.target.value !== '') {
+        event.target.style.borderColor = '';
+      }
+    }));
 
-    /*
-    8. Выведите в консоль все имеющиеся атрибуты и их значения тега у которого
-    есть все два класса btn и dropdown-toggle.
-    Вывод каждого атрибута и значений должен выглядеть следующим образом (пример):
-    Атрибут "class" содержит значение "btn btn-secondary dropdown-toggle"
-     */
-    const alpha = document.querySelector('.btn.dropdown-toggle').attributes;
-
-    for (const beta of alpha) {
-      console.log(`Атрибут "${beta.name}" содержит значение "${beta.value}"`);
-    }
 
   </script>
 </body>
