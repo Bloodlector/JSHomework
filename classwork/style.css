@@ -1,0 +1,136 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.body {
+    font-family: 'Lato', sans-serif;
+}
+.wrapper {
+    width: 1140px;
+    margin: 0 auto;
+    outline: 1px solid red;
+}
+.header {
+    background-color: #F8F8F8;
+}
+.header-main {
+    padding: 10px;
+    
+    justify-content: space-between;
+    display: flex;
+}
+.cart-button {
+    border: 1px solid black;
+    background-color: #F8F8F8;
+    transition: 0.3s;
+    height: 50px;
+    width: 100px;
+    }
+
+    .cart-button:hover {
+        cursor: pointer;
+        transform: scale(1.2);
+        background-color: #F16D7F;
+    }
+    .cart-button:active {
+        transform: scale(0.9);
+    }
+.main {
+    background-color: #FFFFFF;
+    padding: 10px;
+}
+.goods-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+    .goods-item {
+        background: #F8F8F8;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        width: 360px;
+        height: 586px;
+        margin-top: 30px;
+        position: relative;
+    }
+        .feature-item-h3 {
+            font-family: Lato;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 13px;
+        line-height: 16px;
+        /* identical to box height */
+        color: #000000;
+        margin-top: 25px;
+        margin-left: 17px;
+        }
+        .feature-item-p1 {
+            font-family: Lato;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 17px;
+        color: #5D5D5D;
+        margin-left: 17px;
+        margin-top: 13px;
+        }
+        .feature-item-p2 {
+            font-family: Lato;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 19px;
+        color: #35161ac4;
+        margin-left: 17px;
+        margin-top: 18px;
+        }
+        .product-overlay {
+            transform: scale(0);
+            background-color: #3a383886;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 420px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            transition: 0.7s;
+        }
+            .goods-item:hover .product-overlay {
+                transform: scale(1);
+            }
+.overlay {
+    width: 139px;
+    height: 44px;
+    font-family: Lato;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 17px;
+color: #FFFFFF;
+border: 1px solid white;
+background-color: transparent;
+display: flex;
+justify-content: center;
+align-items: center;
+transition: 0.3s;
+}
+    .overlay:hover {
+        cursor: pointer;
+        background-color: #f263769f;
+    }
+    .overlay:active {
+        transform: scale(0.9);
+    }
+    .overlay:hover .overlay-svg{
+        fill: white;
+    }
+    .overlay-svg {
+            fill: white;
+            margin-right: 10px;
+            transition: 0.3s;
+    }
