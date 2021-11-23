@@ -6,9 +6,10 @@ const goods = [
 ];
 
 //image не получилось присвоить, почему то адрес картинки никак не хочет вставляться в img. (пробовал много способов)
-const renderGoodsItem = (title = 'Выполение ДЗ по дефолтным значениям', price, image) => `
+const renderGoodsItem = ({ title, price, image }) => (
+  `
 <div class="goods-item">
-                    <img src='img/featureitem1.png' alt="featureitem">
+                    <img src='${image}' alt="featureitem">
                     <div class="product-overlay">
                         <button onClick="location.href='./product.html'" class="overlay"><svg class="overlay-svg"
                                 width="27" height="25" viewBox="0 0 27 25" xmlns="http://www.w3.org/2000/svg">
@@ -21,11 +22,11 @@ const renderGoodsItem = (title = 'Выполение ДЗ по дефолтны�
                         arbiter of cool Kym Ellery
                         teams up with Moda Operandi.</p>
                     <p class="feature-item-p2">$${price}</p>
-                </div>`;
+                </div>`)
 
 const renderGoodsList = () => {
-  let goodsList = goods.map(item => renderGoodsItem(item.title, item.price));
-  document.querySelector('.goods-list').innerHTML = goodsList;
+  let goodsList = goods.map((item) => renderGoodsItem(item));
+  document.querySelector('.goods-list').innerHTML = goodsList.join('');
 }
 
 renderGoodsList(goods);
