@@ -1,183 +1,133 @@
-/* ToDo Стрелочные функции */
-// function fu (x, y) {
-//   return x + y;
+/* ToDo создание объектов */
+// Литеральный синтаксис
+// const fish = {
+//   name: 'Nemo',
+//   age: 15
 // }
 
-// var fu = (x, y) => {
-//   return x + y;
-// }
+// Синтаксис на основе конструкторов
+// const dog = new Object({
+//   name: 'Sharik',
+//   age: 10
+// });
 
-// есил один аргумент то можно без скобок
-// var fu = x => {
-//   this.x
-//   return x;
-// }
-//
-// function fu() {
-//   console.log(this.x)
-// }
-
-// есил функци выполняет одну операцию то можно вернуть результат без 'return' без фигурных скобок
-// var fu = x => x;
-// var fu = (x, y) => x + y;
-// var fu = (x, y) => (
-//   x + y
-// );
-
-/* ToDo Дефолтные значения функции */
-// function fu(x = 1, y = 2) {
-//   console.log(x);
-//   console.log(y);
-// }
-// fu();
-// fu(10, 20);
-
-/* ToDo шаблонные строки */
-// var age = 30;
-// var name = 'Kolya';
-//
-// var str = `Hello world! My name is ${name}, i'm ${30} `
-// console.log(str);
-// str = `hist height is ${ 10 + 20 } !`
-// console.log(str);
-
-/* ToDo Деструктуризация */
-// 1) Деструктцризация объектов
-// var obj = {
-//   name: 'Nikolay',
-//   age: 30,
-//   height: 180,
-//   weight: 70
+/* ToDo Совйства объектов */
+// типы свойста
+// const car = {
+//   name: 'bmw',
+//   maxSpeed: 260,
+//   isElectricity: true,
+//   move: function () {
+//     console.log('car is moving!');
+//   },
+//   test() {
+//     console.log(this.name);
+//   },
+//   leftDor: {
+//     color: 'red',
+//     open: true
+//   },
+//   rightDor: {
+//     color: 'red',
+//     open: false
+//   },
+//   tirePressure: [2, 2.1, 2, 1.9],
+//   reinSensor: null
 // };
-//
-// var { name, age, ...other } = obj;
-//
-// console.log(name);
-// console.log(age);
-// console.log(other);
-// console.log(obj);
+// console.log(car);
 
-// name = 'Vasiliy';
-// console.log(obj);
-
-// 2) Деструктцризация массивов
-// var animals = ['dog', 'cat', 'lion', 'pig'];
-// var [ firstAnimal, secondAnimal, ...otherAnimals ] = animals;
-// console.log(firstAnimal);
-// console.log(secondAnimal);
-// console.log(otherAnimals);
-
-/* ToDo var, let, const (их особенности) */
-// /* 1) var */
-// var x = 'x';
-// console.log(x);
-
-// function fu() {
-//   var y = 10;
+// обращение к свойствам
+// console.log(car.name);
+// console.log(car.leftDor.color)
+// console.log(car['name']);
+// console.log(car[getName()])
+// car.move();
+// car.reinSensor = {
+//   name: 'samsung'
 // }
-// console.log(y);
-
-// if (false) {
-//   var z = 10;
+// function getName() {
+//   return 'na' + 'me';
 // }
-// console.log(z);
-// var z = 20;
 
-/* 3) const */
-// const x = 10;
-// x = 20;
-
+/* ToDo Ссылочные типы  и их копирование */
 // const obj = {
-//   name: 'Kolya',
-//   age: 30
+//   name: 'Kolya'
 // }
-// obj.name = 'Vasya'
-
-/* 2) let */
-// if (false) {
-  // let x = 10;
-  // const y = 10;
+// const obj2 = obj;
+// obj2.name = 'Sasha';
+// function fu(obj) {
+//   obj.age = 20;
 // }
-// console.log(x);
-// console.log(y);
-
-
-/* ToDo - Компиляция и поднятие */
-/* 0) Компиляция */
-
-/* 1) Поднятие */
-// console.log(x);
-// var x = 10;
-
-/* 2) Поднятие let и const (врменная мёртвая зона) */
+// fu(obj);
 //
-// {
-//   let _nested = 'secret'
-//   function nested () {
-//     return _nested
+// fu.prefix = 'myFu';
+
+/* ToDo конструкторы объектов */
+// Конструкторы
+// function Car(name, color) {
+//   this.name = name;
+//   this.speed = color;
+//   this.saySpeed = function () {
+//     console.log(this.speed);
 //   }
 // }
-// console.log(_nested)
-// console.log(nested())
+// const lada = new Car('Lada', 'Eggplant');
+// lada.saySpeed();
 
-/* 3) Объявление функции и функциональное выраженине */
-// fu1();
-// function fu1() {
-//   console.log('fu1');
+/* ToDo Прототипное наследование */
+// function Car() {
+//   this.wheelCount = 4;
+//   this.engine = true;
 // }
-
-// fu2();
-// var fu2 = function() {
-//   console.log('fu2');
+// function Hatchback() {
+//   this.doorCount = 5;
 // }
-
-/* 4) Область видимости */
-// function fu() {
-//   debugger
-//   function fu2() {
-//     debugger
-//     function fu3() {
-//       var test = 'in last scope';
-//       debugger
-//     }
-//     fu3();
+// Hatchback.prototype = new Car;
+//
+// const honda = new Hatchback();
+// console.log(honda.engine);
+//
+// function OpelAstra(color) {
+//   this.name = 'Opel';
+//   this.color = color;
+//   this.sayDoorCount = function () {
+//     console.log(this.doorCount);
 //   }
-//   fu2();
+//   this.sayColor = function () {
+//     console.log(this.color);
+//   }
 // }
-// fu();
+// OpelAstra.prototype = new Hatchback();
+// opelAstra = new OpelAstra('red');
+// opelAstra.sayDoorCount();
+// opelAstra.sayColor();
 
-
-/* ToDo - Области видимости */
-/* 1) Глобальная */
-// var g = 'Глобальная';
-// console.log(g);
-
-/* 2) Функциональная */
-// function fu() {
-//   var f = 'Функциональная';
-//   console.log(f);
+/* ToDo Синтаксис классов */
+// class Animal {
+//   constructor(type) {
+//     this.type = type;
+//     this.isAlive = false;
+//   }
+//
+//   name = null;
+//   toBorn = function () {
+//     this.isAlive = true;
+//   }
+//   setName(name) {
+//     this.name = name;
+//   }
 // }
-
-/* 3) Блочная */
-// {
-//   let b = 'Блочная';
-//   console.log(b);
+// const dog = new Animal('dog');
+// console.log(dog);
+//
+// class Cat extends Animal {
+//   constructor() {
+//     super('Cat');
+//   }
+//   sayMiau = function () {
+//     console.log('miau!')
+//   }
 // }
-
-/* 4) Блок try catch */
-// try {
-//   throw new Error('Блок try catch');
-// } catch (err) {
-//   console.log(err);
-// }
-// console.log(err);
-
-
-
-
-
-
-
-
-
-
+//
+// const murzik = new Cat();
+// console.log(murzik)
