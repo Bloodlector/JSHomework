@@ -4,6 +4,33 @@ const goods = [
   { title: 'Jacket', price: 350, image: src = './img/featureitem3.png' },
   { title: 'Shoes', price: 250, image: src = './img/featureitem4.png' },
 ];
+const reformData = (items) => {
+  return items.map(({ product_name, ...rest }) => {
+    return {
+      ...rest,
+      title: product_name
+    }
+  })
+}
+const rqURL = "https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses";
+const GOODS_POSTFIX = "/catalogData.json";
+const CART_POSTFIX = "/getBasket.json";
+const ADD_TO_CART = "/addTobasket.json";
+const DELETE_ITEM = "/deleteFromBasket.json";
+
+const service = function (url, postfix, method = "GET") {
+  return new Promise((resolve, reject) => {
+
+    fetch(`${url}${postfix}`, {
+      method
+    }).then((res) => {
+      return res.json();
+    }).then((data) => {
+      resolve(data);
+    })
+  })
+}
+
 
 class GoodsItem {
   constructor({ title, price, image }) {
@@ -28,60 +55,88 @@ class GoodsItem {
                         teams up with Moda Operandi.</p>
                     <p class="feature-item-p2">$${this.price}</p>
                 </div>
-    `;
+    `
   }
 }
 
-
 class GoodsList {
   constructor() {
-    this.goods = goods;
+    const searchButton = document.getElementById('search');
+    searchButton.addEventListener('click', () => {
+      this.filterGoods();
+    })
+  }
+
+  filterGoods() {
+
+  }
+
+  setGoods() {
+    return service(rqURL, GOODS_POSTFIX).then((data) => {
+      return reformData(data)
+    });
+  }
+
+  addToCart() {
+    return service(rqURL, ADD_TO_CART, "POST").then((data) => {
+
+    })
+  }
+  deleteFromBasket(id) {
+    return service(rqURL, `${DELETE_ITEM}/${id}`, "DELETE").then((data) => {
+
+    })
   }
 
   countSum() { //этот метод считает сумму цен из массива товаров
     return this.goods.reduce((prev, { price }) => prev + price, 0);
   }
 
-  createTotal() { //этот метод создает DOM элемент для того, чтобы в него выводить сумму
-    const h2Total = document.createElement('h2');
-    h2Total.classList.add('total');
-    const flexRow = document.querySelector('.main');
-    flexRow.prepend(h2Total);
-    h2Total.innerHTML = 'Всего товаров на странице на сумму: ';
-  }
-
-  sumTotal() { //этот метод считает сумму товаров на странице
-    const summary = document.querySelector('.total');
-    let sum = 0;
-    for (let item of this.goods) {
-      sum += item.price;
-    }
-    summary.insertAdjacentHTML('beforeend', `${sum} р`);
-  }
 
   render() {
-    const _goods = [...this.goods];
-    const _goodsItems = _goods.map((item) => {
-      const goodsItem = new GoodsItem(item);
-      return goodsItem.render();
-    })
-    document.querySelector('.goods-list').innerHTML = _goodsItems.join('');
+    this.setGoods().then((data) => {
+      this.goods = data;
+      const _goods = [...this.goods];
+      const _goodsItems = _goods.map((item) => {
+        const goodsItem = new GoodsItem(item);
+        return goodsItem.render();
+      })
+      document.querySelector('.goods-list').innerHTML = _goodsItems.join('');
+
+    });
+
   }
+  // createTotal() { //этот метод создает DOM элемент для того, чтобы в него выводить сумму
+  //   const h2Total = document.createElement('h2');
+  //   h2Total.classList.add('total');
+  //   const flexRow = document.querySelector('.main');
+  //   flexRow.prepend(h2Total);
+  //   h2Total.innerHTML = 'Всего товаров на странице на сумму: ';
+  // }
+
+  // sumTotal() { //этот метод считает сумму товаров на странице
+  //   const summary = document.querySelector('.total');
+  //   let sum = 0;
+  //   for (let item of this.goods) {
+  //     sum += item.price;
+  //   }
+  //   summary.insertAdjacentHTML('beforeend', `${sum} р`);
+  // }
 
 }
 
-onload = () => {
-  const goodsList = new GoodsList(goods);
-  goodsList.render();
-  goodsList.countSum();
-  goodsList.createTotal();
-  goodsList.sumTotal();
-}
 
-class cart {
+
+class Cart {
+  setGoods() {
+    return service(rqURL, CART_POSTFIX).then(() => {
+      this.goods = reformData(data.contents);
+    })
+  };
+
   openCart() { }
   closeCart() { }
-  render() { }
+
 
 }
 class cartItem {
@@ -89,3 +144,14 @@ class cartItem {
   render() { }
   deleteFromCart() { }
 }
+
+onload = () => {
+  const goodsList = new GoodsList(goods);
+  goodsList.render();
+  // goodsList.createTotal();
+  // goodsList.sumTotal();
+  goodsList.setGoods()
+}
+// Вызов метода по получению товаров в корзине
+// const cart = new Cart();
+// cart.setGoods();
