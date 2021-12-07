@@ -55,7 +55,7 @@
 
          <div v-if='!!filteredGoods.length' class="goods-list">
             <div class="goods-item" v-for='item in filteredGoods'>
-               <img src='{{ item.image }}' alt="featureitem">
+               <img v-bind:src='item.image' alt="featureitem">
                <div class="product-overlay">
                   <button class="overlay"><svg class="overlay-svg" width="27" height="25" viewBox="0 0 27 25"
                         xmlns="http://www.w3.org/2000/svg">

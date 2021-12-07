@@ -54,8 +54,8 @@ onload = () => {
   const app = new Vue({
     el: '#app',
     data: {
-      goods: goods,
-      filteredGoods: goods,
+      goods: [],
+      filteredGoods: [],
       search: '',
       basketVision: false
     },
