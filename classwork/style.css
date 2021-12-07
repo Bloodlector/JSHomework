@@ -12,20 +12,25 @@
     outline: 1px solid red;
 }
 .header {
-    background-color: #F8F8F8;
+  background: #222222;
+  position: relative;
+  color: white;
 }
 .header-main {
     padding: 10px;
     
-    justify-content: space-between;
+    justify-content: right;
     display: flex;
 }
 .cart-button {
-    border: 1px solid black;
-    background-color: #F8F8F8;
-    transition: 0.3s;
-    height: 50px;
     width: 100px;
+  height: 50px;
+  border: 1px solid #838282;
+  background-color: transparent;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+  margin-left: 30px;
     }
 
     .cart-button:hover {
@@ -36,6 +41,79 @@
     .cart-button:active {
         transform: scale(0.9);
     }
+
+    .head-search {
+        background-color: transparent;
+        border-color: transparent;
+        border: none;
+        -webkit-transition: 0.3s;
+        -o-transition: 0.3s;
+        transition: 0.3s;
+        margin-left: 10px;
+      }
+      
+      .head-search:hover {
+        cursor: pointer;
+        -webkit-transform: scale(1.2);
+                -ms-transform: scale(1.2);
+            transform: scale(1.2);
+      }
+      
+      .head-search:active {
+        -webkit-transform: scale(0.9);
+                -ms-transform: scale(0.9);
+            transform: scale(0.9);
+      }
+      
+      .search-svg {
+        fill: #e8e8e8;
+        -webkit-transition: 0.3s;
+        -o-transition: 0.3s;
+        transition: 0.3s;
+      }
+      
+      .head-search:hover .search-svg {
+        fill: #F16D7F;
+        -webkit-transform: scale(1.2);
+                -ms-transform: scale(1.2);
+            transform: scale(1.2);
+      }
+
+      .searchInput {
+          margin-left: 100px;
+
+      }
+
+      .basketRow {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #ebebeb;
+        padding-bottom: 10px;
+    }
+    .basketHeader {
+        font-weight: bold;
+    }
+    .basketTotal {
+        font-weight: bold;
+        text-align: right;
+    }
+    .basket {
+        position: absolute;
+        z-index: 3;
+        right: 0;
+        top: 72px;
+        background: white;
+        padding: 10px;
+        border: 1px solid #ebebeb;
+        border-radius: 3px;
+        font-size: 14px;
+    }
+    .hidden {
+        display: none;
+    }
+
 .main {
     background-color: #FFFFFF;
     padding: 10px;
@@ -134,3 +212,70 @@ transition: 0.3s;
             margin-right: 10px;
             transition: 0.3s;
     }
+    .cart-input {
+        width: 360px;
+        height: 45px;
+        border: 1px solid #B1B1B1;
+        padding: 20px;
+        margin-left: 200px;
+      }
+      
+      .cart-input:hover {
+        background-color: #e4e4e4;
+      }
+      
+      .cart-input:focus {
+        border: 1px solid #000000;
+        outline: none;
+        padding: 20px;
+      }
+      
+      .cart-input::-webkit-input-placeholder {
+        font-family: Lato;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 13px;
+        line-height: 16px;
+        color: #B1B1B1;
+        padding: 10px;
+      }
+      
+      .cart-input:-ms-input-placeholder {
+        font-family: Lato;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 13px;
+        line-height: 16px;
+        color: #B1B1B1;
+        padding: 10px;
+      }
+      
+      .cart-input::-ms-input-placeholder {
+        font-family: Lato;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 13px;
+        line-height: 16px;
+        color: #B1B1B1;
+        padding: 10px;
+      }
+      
+      .cart-input::-moz-placeholder {
+        font-family: Lato;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 13px;
+        line-height: 16px;
+        color: #B1B1B1;
+        padding: 10px;
+      }
+      
+      .cart-input::placeholder {
+        font-family: Lato;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 13px;
+        line-height: 16px;
+        color: #B1B1B1;
+        padding: 10px;
+      }
