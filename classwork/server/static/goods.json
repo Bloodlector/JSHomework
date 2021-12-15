@@ -1,0 +1,38 @@
+[
+    {
+        "id": "1",
+        "title": "Shirt",
+        "price": 150,
+        "image": "img/featureitem1.png"
+    },
+    {
+        "id": "2",
+        "title": "Socks",
+        "price": 50,
+        "image": "img/featureitem2.png"
+    },
+    {
+        "id": "3",
+        "title": "Jacket",
+        "price": 350,
+        "image": "img/featureitem3.png"
+    },
+    {
+        "id": "4",
+        "title": "Shoes",
+        "price": 250,
+        "image": "img/featureitem4.png"
+    },
+    {
+        "id": "5",
+        "title": "Boots",
+        "price": 210,
+        "image": "img/featureitem5.png"
+    },
+    {
+        "id": "6",
+        "title": "Sveater",
+        "price": 130,
+        "image": "img/featureitem6.png"
+    }
+]
