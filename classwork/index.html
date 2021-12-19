@@ -22,9 +22,9 @@
          </basket>
          <div class="header-main wrapper">
             <h1>Каталог товаров</h1>
-            <search v-on:sfilter='filter' v-model='search' v-on:input='filter' v-on:search='search'>
+            <search v-model='search' v-on:input='filter'>
             </search>
-            <search-button v-on:sfilter='filter' v-on:search='search'></search-button>
+            <search-button v-on:input='filter' v-on:click='filter'></search-button>
             <button class="cart-button" href="#" v-on:click='showCart'><svg class="search-svg" width="32" height="29"
                   viewBox="0 0 32 29" xmlns="http://www.w3.org/2000/svg">
                   <path
